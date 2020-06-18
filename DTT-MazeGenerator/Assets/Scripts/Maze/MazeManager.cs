@@ -16,6 +16,9 @@ namespace FlorisProjecten.MazeGenerator.Maze
         private Vector2 _currentLocation;
         private float _time;
 
+        /// <summary>
+        /// Add a short delay in between nextPaths
+        /// </summary>
         private void Update()
         {
             _time += Time.deltaTime;
