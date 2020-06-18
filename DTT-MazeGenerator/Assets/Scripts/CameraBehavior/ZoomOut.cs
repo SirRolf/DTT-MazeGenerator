@@ -6,15 +6,17 @@ namespace FlorisProjecten.MazeGenerator.CameraBehavior
     [RequireComponent(typeof(Camera))]
     public class ZoomOut : MonoBehaviour
     {
+        [SerializeField] private Transform StarterPath;
+
         private Camera _camera;
-        Dictionary<string, Transform> _furthestPaths = new Dictionary<string, Transform>();
+        private Dictionary<string, Transform> _furthestPaths = new Dictionary<string, Transform>();
         private void Start()
         {
             _camera = GetComponent<Camera>();
-            _furthestPaths.Add("up", null);
-            _furthestPaths.Add("down", null);
-            _furthestPaths.Add("left", null);
-            _furthestPaths.Add("right", null);
+            _furthestPaths.Add("up", StarterPath);
+            _furthestPaths.Add("down", StarterPath);
+            _furthestPaths.Add("left", StarterPath);
+            _furthestPaths.Add("right", StarterPath);
         }
 
         private void Update()
