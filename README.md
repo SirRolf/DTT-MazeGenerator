@@ -12,3 +12,4 @@ I want to make a maze generator using the Detph-first search algorithm. Why this
 * able to play from a first person perspactive of the player and back
 * Particle effects for when you finish the maze
 * particle effects for when a new 
+* Check if both width and height are filled in on generation
