@@ -6,19 +6,20 @@ namespace FlorisProjecten.MazeGenerator.CameraBehavior
     [RequireComponent(typeof(Camera))]
     public class ZoomOut : MonoBehaviour
     {
-        [SerializeField] private Transform StarterPath;
-
         private Camera _camera;
         private Dictionary<string, Transform> _furthestPaths = new Dictionary<string, Transform>();
         private void Start()
         {
             _camera = GetComponent<Camera>();
-            _furthestPaths.Add("up", StarterPath);
-            _furthestPaths.Add("down", StarterPath);
-            _furthestPaths.Add("left", StarterPath);
-            _furthestPaths.Add("right", StarterPath);
+            _furthestPaths.Add("up", null);
+            _furthestPaths.Add("down", null);
+            _furthestPaths.Add("left", null);
+            _furthestPaths.Add("right", null);
         }
 
+        /// <summary>
+        /// checks if all the furthest paths are visable and zooms out if they are not.
+        /// </summary>
         private void Update()
         {
             // check if all the furthest paths are visable
@@ -40,9 +41,21 @@ namespace FlorisProjecten.MazeGenerator.CameraBehavior
             }
         }
 
-        // Whenever you add a new path also check if i'ts further away then other paths.
-        private void ChangeSize(Transform transform)
+        /// <summary>
+        /// Checks of the given transform is further away then the other ones.
+        /// </summary>
+        /// <param name="transform"></param>
+        public void ChangeSize(Transform transform)
         {
+            //Think loops would have been cleaner
+            if (_furthestPaths["up"] == null)
+            {
+                _furthestPaths["up"] = transform;
+                _furthestPaths["down"] = transform;
+                _furthestPaths["left"] = transform;
+                _furthestPaths["right"] = transform;
+
+            }
             if (_furthestPaths["up"].position.z > transform.position.z) _furthestPaths["up"] = transform;
             if (_furthestPaths["down"].position.z < transform.position.z) _furthestPaths["down"] = transform;
             if (_furthestPaths["left"].position.x < transform.position.x) _furthestPaths["left"] = transform;
